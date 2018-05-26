@@ -9,11 +9,11 @@ const getWeatherDetail = require('./getWeatherDetail');
 
 module.exports = event => {
 	if (!event.message.is_echo) {
-		console.log('Received message from senderId: ' + senderId);
-		console.log('Message is: ' + JSON.stringify(message));
-
 		const senderId = event.sender.id;
 		const message = event.message.text;
+
+		console.log('Received message from senderId: ' + senderId);
+		console.log('Message is: ' + JSON.stringify(message));
 
 		if (message.text) {
 			let formattedMsg = message.text.toLowerCase().trim();
