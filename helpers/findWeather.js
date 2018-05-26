@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
-const db = mongoose.connect(process.env.MONGODB_URI);
+const request = require('request');
 const Weather = require('../models/weather');
 
-function findWeather(userId, city, apiKey) {
+module.exports = (userId, city, apiKey) => {
 	request(
 		`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`,
 		function(error, response, body) {
@@ -72,4 +71,4 @@ function findWeather(userId, city, apiKey) {
 			}
 		}
 	);
-}
+};
