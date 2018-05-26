@@ -6,14 +6,15 @@ module.exports = (req, res) => {
 	if (req.body.object == 'page') {
 		// Iterate over each entry
 		// There may be multiple entries if batched
-		req.body.entry.forEach(function(entry) {
+		req.body.entry.forEach(entry => {
+			console.log('Entry: ', entry);
 			// Iterate over each messaging event
 			entry.messaging.forEach(event => {
 				if (event.postback) {
 					processPostback(event);
-				  } else if (event.message) {
+				} else if (event.message) {
 					processMessage(event);
-				  }
+				}
 			});
 		});
 
