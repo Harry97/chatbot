@@ -1,13 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const mongoose = require('mongoose');
 const app = express();
+const db = mongoose.connect(process.env.MONGODB_URI);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(process.env.PORT || 5000);
-const db = mongoose.connect(process.env.MONGODB_URI);
 
 const homeController = require('./controllers/home');
 const verificationController = require('./controllers/verification');
