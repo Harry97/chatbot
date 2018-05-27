@@ -14,10 +14,12 @@
 	"dependencies": {
 		"apiai": "^4.0.3",
 		"body-parser": "^1.18.3",
+		"dotenv": "^5.0.1",
 		"express": "^4.16.3",
 		"localtunnel": "^1.9.0",
 		"mongoose": "^5.1.2",
 		"ngrok": "^3.0.1",
+		"nodemon": "^1.17.5",
 		"request": "^2.87.0"
 	}
 }
