@@ -9,7 +9,11 @@ const db = mongoose.connect(process.env.MONGODB_URI);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.listen(process.env.PORT || 5000);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+	console.log(`Server is listening on port ${PORT}`);
+});
 
 const homeController = require('./controllers/home');
 const verificationController = require('./controllers/verification');

@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node index.js",
+		"dev": "nodemon index.js --inspect",
 		"ngrok": "./node_modules/.bin/ngrok http 3000"
 	},
 	"keywords": [],
@@ -20,6 +20,7 @@
 		"mongoose": "^5.1.2",
 		"ngrok": "^3.0.1",
 		"nodemon": "^1.17.5",
-		"request": "^2.87.0"
+		"request": "^2.87.0",
+		"utf8": "^3.0.0"
 	}
 }

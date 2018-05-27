@@ -1,3 +1,4 @@
+const request = require('request');
 const sendTextMessage = require('./sendTextMessage');
 
 module.exports = event => {
@@ -16,12 +17,13 @@ module.exports = event => {
 				},
 				method: 'GET'
 			},
-			function (error, response, body) {
+			function(error, response, body) {
 				let greeting = '';
 				if (error) {
 					console.log("Error getting user's name: " + error);
 				} else {
 					let bodyObj = JSON.parse(body);
+					console.log('BODY OBJECT: ', bodyObj);
 					name = bodyObj.first_name;
 					greeting = `Hi ${name}.`;
 				}
@@ -29,9 +31,14 @@ module.exports = event => {
 				sendTextMessage(senderId, { text: message });
 			}
 		);
-	} else if (payload === "Correct") {
-		sendTextMessage(senderId, { text: "Awesome! What would you like to find out? Enter 'plot', 'date', 'runtime', 'director', 'cast' or 'rating' for the various details." });
-	} else if (payload === "Incorrect") {
-		sendTextMessage(senderId, { text: "Oops! Sorry about that. Try using the exact name of the city" });
+	} else if (payload === 'Correct') {
+		sendTextMessage(senderId, {
+			text:
+				"Awesome! What would you like to find out? Enter 'plot', 'date', 'runtime', 'director', 'cast' or 'rating' for the various details."
+		});
+	} else if (payload === 'Incorrect') {
+		sendTextMessage(senderId, {
+			text: 'Oops! Sorry about that. Try using the exact name of the city'
+		});
 	}
 };

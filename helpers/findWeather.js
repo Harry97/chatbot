@@ -1,4 +1,5 @@
 const request = require('request');
+const sendTextMessage = require('./sendTextMessage');
 const Weather = require('../models/weather');
 
 module.exports = (userId, city, apiKey) => {
@@ -64,10 +65,10 @@ module.exports = (userId, city, apiKey) => {
 					});
 				} else {
 					console.log(weatherObj.Error);
-					sendMessage(userId, { text: weatherObj.Error });
+					sendTextMessage(userId, { text: weatherObj.Error });
 				}
 			} else {
-				sendMessage(userId, { text: 'Something went wrong. Try again.' });
+				sendTextMessage(userId, { text: 'Something went wrong. Try again.' });
 			}
 		}
 	);
