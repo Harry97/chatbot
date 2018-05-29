@@ -7,7 +7,7 @@ module.exports = (senderId, text) => {
 	// Formatting message response according to the way text was sent
 
 	let message = '';
-	if (text.attachments) {
+	if (text.attachment) {
 		message = text;
 	} else if (text.text && !text.quick_replies) {
 		message = { text: text.text };
