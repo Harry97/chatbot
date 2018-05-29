@@ -2,9 +2,10 @@ const request = require('request');
 const sendTextMessage = require('./sendTextMessage');
 const Weather = require('../models/weather');
 
-module.exports = (userId, city, apiKey) => {
-	let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+module.exports = (userId, url) => {
 	request(url, function(error, response, body) {
+		console.log('RECIEVED ERROR: ', error);
+		console.log('Body: ', body);
 		if (!error && response.statusCode === 200) {
 			var weatherObj = JSON.parse(body);
 			var query = { user_id: userId };

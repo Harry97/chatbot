@@ -1,11 +1,9 @@
-const API_AI_TOKEN = process.env.API_AI_TOKEN;
 const FACEBOOK_ACCESS_TOKEN = process.env.FACEBOOK_ACCESS_TOKEN;
-const OPEN_WEATHER_TOKEN = process.env.OPEN_WEATHER_TOKEN;
-const apiAiClient = require('apiai')(API_AI_TOKEN);
+
 const request = require('request');
 const sendTextMessage = require('./sendTextMessage');
-const findWeather = require('./findWeather');
 const getWeatherDetail = require('./getWeatherDetail');
+const flowWithTheDialog = require('./flowWithTheDialog');
 
 module.exports = event => {
 	const senderId = event.sender.id;
@@ -33,21 +31,11 @@ module.exports = event => {
 				break;
 
 			default:
-				findWeather(senderId, formattedMsg, OPEN_WEATHER_TOKEN);
+				flowWithTheDialog(senderId, message);
 		}
 	} else if (!event.message.is_echo && message.attachments) {
 		sendTextMessage(senderId, {
 			text: "Sorry, I don't understand your request."
 		});
 	}
-
-	// const apiaiSession = apiAiClient.textRequest(message, {
-	// 	sessionId: 'crowdbotics_bot'
-	// });
-	// apiaiSession.on('response', response => {
-	// 	const result = response.result.fulfillment.speech;
-	// 	sendTextMessage(senderId, result);
-	// });
-	// apiaiSession.on('error', error => console.log(error));
-	// apiaiSession.end();
 };

@@ -3,8 +3,17 @@ const FACEBOOK_ACCESS_TOKEN = process.env.FACEBOOK_ACCESS_TOKEN;
 
 module.exports = (senderId, text) => {
 	console.log('SENDER ID: ', senderId);
-	console.log('TEXT: ', text);
+	console.log('TO BE SENT TEXT: ', text);
+	// Formatting message response according to the way text was sent
 
+	let message = '';
+	if (text.attachment) {
+		message = text;
+	} else if (text.text) {
+		message = { text: text.text };
+	} else {
+		message = { text };
+	}
 	request(
 		{
 			url: 'https://graph.facebook.com/v2.6/me/messages',
@@ -12,10 +21,10 @@ module.exports = (senderId, text) => {
 			method: 'POST',
 			json: {
 				recipient: { id: senderId },
-				message: text
+				message: message
 			}
 		},
-		function(error, response, body) {
+		(error, response, body) => {
 			if (error) {
 				console.log('ERORR: ', error);
 			} else {
