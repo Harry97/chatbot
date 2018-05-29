@@ -23,7 +23,6 @@ module.exports = event => {
 					console.log("Error getting user's name: " + error);
 				} else {
 					let bodyObj = JSON.parse(body);
-					console.log('BODY OBJECT: ', bodyObj);
 				}
 				let message = `Hello there. My name is Weather Bot. I can tell you current weather status in any city/location.`;
 				sendTextMessage(senderId, {

@@ -2,10 +2,6 @@ const request = require('request');
 const FACEBOOK_ACCESS_TOKEN = process.env.FACEBOOK_ACCESS_TOKEN;
 
 module.exports = (senderId, text) => {
-	console.log('SENDER ID: ', senderId);
-	console.log('TO BE SENT TEXT: ', text);
-	// Formatting message response according to the way text was sent
-
 	let message = '';
 	if (text.attachment && text.attachment.type === 'template') {
 		message = text;
@@ -16,6 +12,10 @@ module.exports = (senderId, text) => {
 	} else {
 		message = { text };
 	}
+
+	console.log('SENDER ID: ', senderId);
+	console.log('TO BE SENT TEXT: ', text);
+
 	request(
 		{
 			url: 'https://graph.facebook.com/v2.6/me/messages',

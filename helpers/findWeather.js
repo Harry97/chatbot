@@ -4,7 +4,6 @@ const Weather = require('../models/weather');
 
 module.exports = (userId, url) => {
 	request(url, function(error, response, body) {
-		console.log('RECIEVED ERROR: ', error);
 		console.log('Body: ', body);
 		if (!error && response.statusCode === 200) {
 			var weatherObj = JSON.parse(body);
@@ -29,7 +28,6 @@ module.exports = (userId, url) => {
 				if (err) {
 					console.log('Database error: ' + err);
 				} else {
-					console.log('WEATHER OBJ: ', weatherObj);
 					message = {
 						attachment: {
 							type: 'template',

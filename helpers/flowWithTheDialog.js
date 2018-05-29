@@ -11,7 +11,6 @@ module.exports = (senderId, message) => {
 
 	apiaiSession.on('response', response => {
 		const result = response.result.fulfillment.speech;
-		console.log(response.result);
 		if (response.result.parameters.geocity) {
 			let url = `http://api.openweathermap.org/data/2.5/weather?q=${
 				response.result.parameters.geocity
@@ -24,7 +23,6 @@ module.exports = (senderId, message) => {
 			let url = `http://api.openweathermap.org/data/2.5/weather?lat=${
 				response.result.parameters.lat
 			}&lon=${response.result.parameters.lon}&APPID=${OPEN_WEATHER_TOKEN}`;
-			console.log('URL: ', url);
 			findWeather(senderId, url);
 		} else {
 			sendTextMessage(senderId, result);
