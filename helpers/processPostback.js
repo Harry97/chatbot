@@ -25,7 +25,7 @@ module.exports = event => {
 					let bodyObj = JSON.parse(body);
 					console.log('BODY OBJECT: ', bodyObj);
 					name = bodyObj.first_name;
-					greeting = `Hi ${name}.`;
+					greeting = `${name ? name : 'Hi there'}.`;
 				}
 				let message = `${greeting} My name is Weather Bot. I can tell you current weather status in any city. What city would you like to know about?`;
 				sendTextMessage(senderId, { text: message });
@@ -34,11 +34,11 @@ module.exports = event => {
 	} else if (payload === 'Correct') {
 		sendTextMessage(senderId, {
 			text:
-				"Awesome! What would you like to find out? Enter 'plot', 'date', 'runtime', 'director', 'cast' or 'rating' for the various details."
+				"Awesome! What would you like to find out? Enter 'coord', 'wind', 'clouds', 'visibility', 'dt' or 'main' for the various details."
 		});
 	} else if (payload === 'Incorrect') {
 		sendTextMessage(senderId, {
-			text: 'Oops! Sorry about that. Try using the exact name of the city'
+			text: 'Try another name then!'
 		});
 	}
 };

@@ -24,12 +24,14 @@ var WeatherSchema = new Schema({
 	wind: { speed: { type: Number }, deg: { type: Number } },
 	clouds: { all: { type: Number } },
 	dt: { type: Number },
-	sys: { type: Number },
-	id: { type: Number },
-	message: { type: Number },
-	country: { type: String },
-	sunrise: { type: Date },
-	sunset: { type: Date },
+	sys: {
+		type: { type: Number },
+		id: { type: Number },
+		message: { type: Number },
+		country: { type: String },
+		sunrise: { type: Date },
+		sunset: { type: Date }
+	},
 	id: { type: Number },
 	name: { type: String },
 	cod: { type: Number }

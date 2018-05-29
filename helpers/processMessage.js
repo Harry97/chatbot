@@ -15,17 +15,19 @@ module.exports = event => {
 		console.log('Message is: ' + JSON.stringify(message));
 
 		let formattedMsg = JSON.stringify(message)
+			.trim()
 			.toLowerCase()
-			.trim();
+			.replace(/"/g, '');
 
 		// If we receive a text message, check to see if it matches any special
 		// keywords and send back the corresponding weather details.
 		// Otherwise, search for weather details.
 		switch (formattedMsg) {
-			case 'cord':
-			case 'weather':
+			case 'coord':
 			case 'wind':
+			case 'main':
 			case 'clouds':
+			case 'visibility':
 			case 'dt':
 				getWeatherDetail(senderId, formattedMsg);
 				break;
@@ -33,7 +35,7 @@ module.exports = event => {
 			default:
 				findWeather(senderId, formattedMsg, OPEN_WEATHER_TOKEN);
 		}
-	} else if (message.attachments) {
+	} else if (!event.message.is_echo && message.attachments) {
 		sendTextMessage(senderId, {
 			text: "Sorry, I don't understand your request."
 		});
