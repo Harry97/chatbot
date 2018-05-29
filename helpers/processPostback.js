@@ -24,11 +24,18 @@ module.exports = event => {
 				} else {
 					let bodyObj = JSON.parse(body);
 					console.log('BODY OBJECT: ', bodyObj);
-					name = bodyObj.first_name;
-					greeting = `${name ? name : 'Hi there'}.`;
 				}
-				let message = `${greeting} My name is Weather Bot. I can tell you current weather status in any city. What city would you like to know about?`;
-				sendTextMessage(senderId, { text: message });
+				let message = `Hello there. My name is Weather Bot. I can tell you current weather status in any city/location.`;
+				sendTextMessage(senderId, {
+					text: message,
+					quick_replies: [
+						{
+							content_type: 'location',
+							title: 'Get Location',
+							payload: 'userLocation'
+						}
+					]
+				});
 			}
 		);
 	} else if (payload === 'Correct') {

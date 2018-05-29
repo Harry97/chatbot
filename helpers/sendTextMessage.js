@@ -7,10 +7,12 @@ module.exports = (senderId, text) => {
 	// Formatting message response according to the way text was sent
 
 	let message = '';
-	if (text.attachment) {
+	if (text.attachments) {
 		message = text;
-	} else if (text.text) {
+	} else if (text.text && !text.quick_replies) {
 		message = { text: text.text };
+	} else if (text.text && text.quick_replies[0].content_type === 'location') {
+		message = text;
 	} else {
 		message = { text };
 	}

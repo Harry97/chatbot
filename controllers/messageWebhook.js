@@ -1,6 +1,7 @@
 // All callbacks for Messenger will be POST-ed here
 const processMessage = require('../helpers/processMessage');
 const processPostback = require('../helpers/processPostback');
+const processLocation = require('../helpers/processLocation');
 
 module.exports = (req, res) => {
 	// Make sure this is a page subscription
@@ -13,6 +14,8 @@ module.exports = (req, res) => {
 				entry.messaging.forEach(event => {
 					if (event.postback) {
 						processPostback(event);
+					} else if (event.message && event.message.attachments) {
+						processLocation(event);
 					} else if (event.message) {
 						processMessage(event);
 					}
