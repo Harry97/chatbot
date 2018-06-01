@@ -1,6 +1,6 @@
 # Facebook Messenger Weather Bot
 
-[**Live App**](https://lit-oasis-79612.herokuapp.com/)
+[**Live App**](https://m.me/weatherchatbottutorial)
 
 A simple bot that can help you to get weather status in any location/city by simply:
 
